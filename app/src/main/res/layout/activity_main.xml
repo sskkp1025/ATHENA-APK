@@ -1,46 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
-    android:padding="16dp">
+    android:background="@color/black">
 
-    <LinearLayout
+    <!-- 메인 화면 영역 (페이지 3개를 겹쳐두고 탭 누를 때마다 보이게/숨기게 처리) -->
+    <FrameLayout
+        android:id="@+id/main_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navigation">
 
-        <TextView
+        <!-- 📄 페이지 1: DEPLOY -->
+        <ScrollView
+            android:id="@+id/page_deploy"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:gravity="center"
-            android:text="ATHENA-Z NATIVE ⚡"
-            android:textColor="@color/cyan"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:visibility="visible">
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SERVER CONFIG" android:textColor="@color/cyan" android:textStyle="bold" />
-        <EditText android:id="@+id/ipInput" android:layout_width="match_parent" android:layout_height="wrap_content" android:backgroundTint="@color/cyan" android:hint="Vultr Server IP" android:textColor="@color/white" android:textColorHint="#888888" />
-        <EditText android:id="@+id/tokenInput" android:layout_width="match_parent" android:layout_height="wrap_content" android:backgroundTint="@color/cyan" android:hint="Secret Token" android:inputType="textPassword" android:textColor="@color/white" android:textColorHint="#888888" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="24dp" android:gravity="center" android:text="ATHENA-Z CONTROL ⚡" android:textColor="@color/cyan" android:textSize="24sp" android:textStyle="bold" />
 
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="EXCHANGE &amp; ALERT" android:textColor="@color/cyan" android:textStyle="bold" />
-        <EditText android:id="@+id/tgTokenInput" android:layout_width="match_parent" android:layout_height="wrap_content" android:backgroundTint="@color/cyan" android:hint="Telegram Bot Token" android:inputType="textPassword" android:textColor="@color/white" android:textColorHint="#888888" />
-        <EditText android:id="@+id/tgChatInput" android:layout_width="match_parent" android:layout_height="wrap_content" android:backgroundTint="@color/cyan" android:hint="Telegram Chat ID" android:textColor="@color/white" android:textColorHint="#888888" />
-        <EditText android:id="@+id/apiKeyInput" android:layout_width="match_parent" android:layout_height="wrap_content" android:backgroundTint="@color/cyan" android:hint="API Key" android:inputType="textPassword" android:textColor="@color/white" android:textColorHint="#888888" />
-        <EditText android:id="@+id/apiSecInput" android:layout_width="match_parent" android:layout_height="wrap_content" android:backgroundTint="@color/cyan" android:hint="API Secret" android:inputType="textPassword" android:textColor="@color/white" android:textColorHint="#888888" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SERVER CONFIG" android:textColor="@color/cyan" android:textStyle="bold" />
+                <EditText android:id="@+id/ipInput" android:layout_width="match_parent" android:layout_height="wrap_content" android:backgroundTint="@color/cyan" android:hint="Vultr Server IP" android:textColor="@color/white" android:textColorHint="#888888" />
+                <EditText android:id="@+id/tokenInput" android:layout_width="match_parent" android:layout_height="wrap_content" android:backgroundTint="@color/cyan" android:hint="Secret Token" android:inputType="textPassword" android:textColor="@color/white" android:textColorHint="#888888" />
 
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="STRATEGY CODE" android:textColor="@color/cyan" android:textStyle="bold" />
-        <EditText android:id="@+id/codeInput" android:layout_width="match_parent" android:layout_height="300dp" android:layout_marginTop="8dp" android:background="@color/dark_gray" android:gravity="top|start" android:hint="# Paste Strategy Code Here" android:inputType="textMultiLine|textNoSuggestions" android:padding="8dp" android:textColor="@color/white" android:textColorHint="#888888" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="EXCHANGE &amp; ALERT" android:textColor="@color/cyan" android:textStyle="bold" />
+                <EditText android:id="@+id/tgTokenInput" android:layout_width="match_parent" android:layout_height="wrap_content" android:backgroundTint="@color/cyan" android:hint="Telegram Bot Token" android:inputType="textPassword" android:textColor="@color/white" android:textColorHint="#888888" />
+                <EditText android:id="@+id/tgChatInput" android:layout_width="match_parent" android:layout_height="wrap_content" android:backgroundTint="@color/cyan" android:hint="Telegram Chat ID" android:textColor="@color/white" android:textColorHint="#888888" />
+                <EditText android:id="@+id/apiKeyInput" android:layout_width="match_parent" android:layout_height="wrap_content" android:backgroundTint="@color/cyan" android:hint="API Key" android:inputType="textPassword" android:textColor="@color/white" android:textColorHint="#888888" />
+                <EditText android:id="@+id/apiSecInput" android:layout_width="match_parent" android:layout_height="wrap_content" android:backgroundTint="@color/cyan" android:hint="API Secret" android:inputType="textPassword" android:textColor="@color/white" android:textColorHint="#888888" />
 
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:orientation="horizontal">
-            <Button android:id="@+id/deployBtn" android:layout_width="0dp" android:layout_height="60dp" android:layout_weight="7" android:backgroundTint="@color/cyan" android:text="DEPLOY &amp; START" android:textColor="@color/black" android:textStyle="bold" />
-            <Space android:layout_width="8dp" android:layout_height="wrap_content" />
-            <Button android:id="@+id/stopBtn" android:layout_width="0dp" android:layout_height="60dp" android:layout_weight="3" android:backgroundTint="@color/red" android:text="STOP" android:textColor="@color/white" android:textStyle="bold" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="24dp" android:orientation="horizontal">
+                    <Button android:id="@+id/deployBtn" android:layout_width="0dp" android:layout_height="60dp" android:layout_weight="7" android:backgroundTint="@color/cyan" android:text="DEPLOY &amp; START" android:textColor="@color/black" android:textStyle="bold" />
+                    <Space android:layout_width="8dp" android:layout_height="wrap_content" />
+                    <Button android:id="@+id/stopBtn" android:layout_width="0dp" android:layout_height="60dp" android:layout_weight="3" android:backgroundTint="@color/red" android:text="STOP" android:textColor="@color/white" android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- 📄 페이지 2: STRATEGY (코드 에디터 전용) -->
+        <LinearLayout
+            android:id="@+id/page_strategy"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:visibility="gone">
+            
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="8dp" android:text="STRATEGY EDITOR" android:textColor="@color/cyan" android:textSize="20sp" android:textStyle="bold" />
+            <EditText android:id="@+id/codeInput" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/dark_gray" android:gravity="top|start" android:hint="# Paste Strategy Code Here\n# 화면 100%를 사용하는 에디터입니다." android:inputType="textMultiLine|textNoSuggestions" android:padding="12dp" android:textColor="@color/white" android:textColorHint="#888888" />
         </LinearLayout>
 
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="24dp" android:text="SYSTEM TERMINAL" android:textColor="@color/cyan" android:textStyle="bold" />
-        <TextView android:id="@+id/logText" android:layout_width="match_parent" android:layout_height="200dp" android:layout_marginTop="8dp" android:background="#0A0A0A" android:padding="8dp" android:text="[SYSTEM] Native Terminal Ready.\n" android:textColor="@color/hacker_green" android:typeface="monospace" />
+        <!-- 📄 페이지 3: TERMINAL (로그 확인 전용) -->
+        <LinearLayout
+            android:id="@+id/page_terminal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:visibility="gone">
+            
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="8dp" android:text="SYSTEM TERMINAL" android:textColor="@color/cyan" android:textSize="20sp" android:textStyle="bold" />
+            <TextView android:id="@+id/logText" android:layout_width="match_parent" android:layout_height="match_parent" android:background="#0A0A0A" android:padding="12dp" android:scrollbars="vertical" android:text="[SYSTEM] Native Terminal Ready.\n" android:textColor="@color/hacker_green" android:typeface="monospace" />
+        </LinearLayout>
 
-    </LinearLayout>
-</ScrollView>
+    </FrameLayout>
+
+    <!-- 하단 3단 탭 바 -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/dark_gray"
+        app:itemIconTint="@color/cyan"
+        app:itemTextColor="@color/cyan"
+        app:menu="@menu/bottom_nav_menu" />
+
+</RelativeLayout>

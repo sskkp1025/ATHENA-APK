@@ -14,6 +14,15 @@ android {
         versionCode = 1
         versionName = "1.0"
     }
+
+    // 🚀 번역기 17 버전 통일 (핵심)
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = "17"
+    }
 }
 
 dependencies {

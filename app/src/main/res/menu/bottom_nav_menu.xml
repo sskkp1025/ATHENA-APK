@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_deploy"
+        android:icon="@android:drawable/ic_menu_send"
+        android:title="DEPLOY" />
+    <item
+        android:id="@+id/nav_strategy"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="STRATEGY" />
+    <item
+        android:id="@+id/nav_terminal"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="TERMINAL" />
+</menu>

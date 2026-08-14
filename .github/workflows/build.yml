@@ -18,11 +18,13 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: 🚀 그레들(Gradle) 엔진 강제 생성 및 빌드
+      - name: 🚀 Gradle 8.5 수동 설치 및 빌드
         run: |
-          gradle wrapper --gradle-version 8.5
+          wget -q https://services.gradle.org/distributions/gradle-8.5-bin.zip
+          unzip -q gradle-8.5-bin.zip
+          ./gradle-8.5/bin/gradle wrapper --gradle-version 8.5
           chmod +x gradlew
-          ./gradlew assembleDebug
+          ./gradlew assembleDebug --no-daemon
 
       - name: 완성된 APK(앱) 업로드
         uses: actions/upload-artifact@v4

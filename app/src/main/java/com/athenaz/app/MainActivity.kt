@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var codeInput: EditText
     private lateinit var logText: TextView
 
-    // 🚀 페이지 3개 뷰 변수 선언
     private lateinit var pageDeploy: View
     private lateinit var pageStrategy: View
     private lateinit var pageTerminal: View
@@ -43,15 +42,12 @@ class MainActivity : AppCompatActivity() {
         codeInput = findViewById(R.id.codeInput)
         logText = findViewById(R.id.logText)
         
-        // 터미널 스크롤 가능하게 설정
         logText.movementMethod = ScrollingMovementMethod()
 
-        // 🚀 페이지 맵핑
         pageDeploy = findViewById(R.id.page_deploy)
         pageStrategy = findViewById(R.id.page_strategy)
         pageTerminal = findViewById(R.id.page_terminal)
 
-        // 🚀 하단 탭 바 클릭 이벤트 (페이지 전환)
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNav.setOnItemSelectedListener { item ->
             pageDeploy.visibility = View.GONE
@@ -64,6 +60,15 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_terminal -> pageTerminal.visibility = View.VISIBLE
             }
             true
+        }
+
+        // 🚀 지우기 귀찮음 해결! CLEAR 버튼 기능 추가
+        findViewById<Button>(R.id.clearStrategyBtn).setOnClickListener {
+            codeInput.setText("")
+        }
+
+        findViewById<Button>(R.id.clearTerminalBtn).setOnClickListener {
+            logText.text = "[SYSTEM] Native Terminal Ready.\n"
         }
 
         loadConfig()

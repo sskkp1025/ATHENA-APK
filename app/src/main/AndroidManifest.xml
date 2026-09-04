@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.athenaz.app">
 
+    <!-- AWS 서버와 터미널 통신을 하기 위한 필수 인터넷 권한 -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application

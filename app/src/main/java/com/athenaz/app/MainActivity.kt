@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.navigation_tab3 -> {
                     terminalWebView.visibility = View.VISIBLE
-                    terminalWebView.loadUrl("http://45.76.195.208:22")
+                    terminalWebView.loadUrl("http://45.76.195.208:7681")
                     true
                 }
                 else -> false

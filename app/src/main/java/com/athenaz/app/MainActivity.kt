@@ -38,7 +38,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var pageStrategy: View
     private lateinit var pageTerminal: View
 
-    // 🚀 SSH 통신을 백그라운드에서 제어할 코루틴 Job
     private var sshJob: Job? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,8 +65,7 @@ class MainActivity : AppCompatActivity() {
             pageStrategy.visibility = View.GONE
             pageTerminal.visibility = View.GONE
             
-            // 🚀 다른 탭으로 이동하면 서버 부하를 막기 위해 SSH 연결을 끊습니다.
-            sshJob?.cancel() 
+            sshJob?.cancel()
 
             when (item.itemId) {
                 R.id.nav_deploy -> pageDeploy.visibility = View.VISIBLE
@@ -75,7 +73,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_terminal -> {
                     pageTerminal.visibility = View.VISIBLE
                     
-                    // 🚀 첫 번째 탭(DEPLOY)에 입력된 IP를 그대로 가져옵니다.
                     val ip = ipInput.text.toString()
                     if (ip.isNotBlank()) {
                         connectToVultrTerminal(ip)
@@ -87,7 +84,6 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        // 지우기 귀찮음 해결! CLEAR 버튼 기능 추가
         findViewById<Button>(R.id.clearStrategyBtn).setOnClickListener {
             codeInput.setText("")
         }
@@ -177,9 +173,6 @@ class MainActivity : AppCompatActivity() {
         codeInput.setText(prefs.getString("code", ""))
     }
 
-    // =========================================================================
-    // 🚀 새롭게 추가된 네이티브 터미널 연결 함수 (보기 전용)
-    // =========================================================================
     private fun connectToVultrTerminal(ip: String) {
         logText.text = "[SYSTEM] $ip 서버에 SSH 연결을 시도합니다...\n"
         
@@ -187,9 +180,9 @@ class MainActivity : AppCompatActivity() {
             try {
                 val jsch = JSch()
                 
-                // ⚠️ 여기에 Vultr 서버 접속 정보를 입력하세요
                 val user = "root" 
-                val password = "여기에_비밀번호_입력" // <--- 실제 비밀번호로 변경!
+                // ⚠️ 여기에 실제 서버 비밀번호를 입력하세요!
+                val password = "!Vt6,pc_P2NcRx#6" 
                 
                 val session = jsch.getSession(user, ip, 22)
                 session.setPassword(password)
@@ -197,15 +190,13 @@ class MainActivity : AppCompatActivity() {
                 session.connect(10000)
 
                 withContext(Dispatchers.Main) {
-                    logText.append("[SYSTEM] Vultr 연결 성공! 터미널 출력을 불러옵니다...\n\n")
+                    logText.append("[SYSTEM] Vultr 연결 성공! 로그 출력을 불러옵니다...\n\n")
                 }
 
                 val channel = session.openChannel("exec") as ChannelExec
                 
-                // ⚠️ 실행할 명령어 세팅 
-                // 지금은 테스트용으로 실시간 프로세스(top)를 띄웁니다. 
-                // 봇의 실시간 로그를 보시려면 "tail -f /경로/아테나로그파일.log" 로 변경하세요!
-                channel.setCommand("top -b")
+                // 실행할 명령어 (테스트용 top -b)
+                channel.setCommand("top -b") 
 
                 val inStream = channel.inputStream
                 channel.connect()
@@ -213,12 +204,10 @@ class MainActivity : AppCompatActivity() {
                 val reader = BufferedReader(InputStreamReader(inStream))
                 var line: String?
 
-                // 서버에서 출력되는 텍스트를 실시간으로 한 줄씩 logText에 찍어줍니다.
                 while (reader.readLine().also { line = it } != null) {
                     withContext(Dispatchers.Main) {
                         logText.append(line + "\n")
                         
-                        // 내용이 추가될 때마다 텍스트 뷰를 맨 아래로 자동 스크롤
                         val layout = logText.layout
                         if (layout != null) {
                             val scrollAmount = layout.getLineTop(logText.lineCount) - logText.height
@@ -238,7 +227,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        // 앱을 끄면 켜져있던 SSH 터미널 연결도 깔끔하게 종료
-        sshJob?.cancel() 
+        sshJob?.cancel()
     }
 }

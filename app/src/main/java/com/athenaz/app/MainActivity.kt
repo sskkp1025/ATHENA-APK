@@ -196,7 +196,7 @@ class MainActivity : AppCompatActivity() {
                 val channel = session.openChannel("exec") as ChannelExec
                 
                 // 🚀 서버에서 가장 최근에 업데이트된 로그 파일(.log 또는 .out)을 찾아 실시간으로 띄워주는 스마트 명령어
-                val smartCommand = "sh -c 'tail -n 50 -f `ls -t /root/*.log /root/*.out /root/*/*.log /root/*/*.out 2>/dev/null | head -n 1`'"
+                val smartCommand = "sh -c 'tail -n 0 -f `ls -t /root/*.log /root/*.out /root/*/*.log /root/*/*.out 2>/dev/null | head -n 1`'"
                 channel.setCommand(smartCommand) 
 
                 val inStream = channel.inputStream

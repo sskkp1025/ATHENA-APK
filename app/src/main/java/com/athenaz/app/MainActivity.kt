@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         val terminalWebView = findViewById<WebView>(R.id.terminalWebView)
 
-        // 터미널 화면(ttyd)을 웹뷰에 띄우기 위해 필수적인 자바스크립트 허용 세팅
         terminalWebView.apply {
             settings.javaScriptEnabled = true
             settings.domStorageEnabled = true
@@ -27,26 +26,21 @@ class MainActivity : AppCompatActivity() {
             webChromeClient = WebChromeClient()
         }
 
-        // 하단 탭을 눌렀을 때의 동작 설정
+        // 대표님의 원래 메뉴 ID가 무엇이든 상관없이, 
+        // 무조건 3번째 탭(인덱스 2)에서 웹뷰가 열리도록 동적 처리
         bottomNavigationView.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.navigation_tab1 -> {
-                    // 1번째 탭: 터미널 숨김
-                    terminalWebView.visibility = View.GONE
-                    true
-                }
-                R.id.navigation_tab2 -> {
-                    // 2번째 탭: 터미널 숨김
-                    terminalWebView.visibility = View.GONE
-                    true
-                }
-                R.id.navigation_tab3 -> {
-                    // 3번째 탭: 터미널 화면 표시 및 AWS 서버 터미널(7681 포트) 접속
-                    terminalWebView.visibility = View.VISIBLE
-                    terminalWebView.loadUrl("http://45.76.195.208:7681")
-                    true
-                }
-                else -> false
+            val menu = bottomNavigationView.menu
+            
+            // 클릭한 탭이 3번째 탭(index 2)일 경우
+            if (item.itemId == menu.getItem(2).itemId) {
+                terminalWebView.visibility = View.VISIBLE
+                terminalWebView.loadUrl("http://45.76.195.208:7681")
+                true
+            } 
+            // 1번째, 2번째 탭을 눌렀을 경우
+            else {
+                terminalWebView.visibility = View.GONE
+                true
             }
         }
     }

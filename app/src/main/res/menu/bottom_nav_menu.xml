@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <!-- 첫 번째 탭 -->
     <item
-        android:id="@+id/navigation_home"
-        android:icon="@android:drawable/ic_menu_agenda"
-        android:title="Home" />
-
-    <!-- 두 번째 탭 -->
+        android:id="@+id/nav_deploy"
+        android:icon="@android:drawable/ic_menu_send"
+        android:title="DEPLOY" />
     <item
-        android:id="@+id/navigation_dashboard"
-        android:icon="@android:drawable/ic_menu_manage"
-        android:title="Dashboard" />
-
-    <!-- 세 번째 탭 (터미널) -->
+        android:id="@+id/nav_strategy"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="STRATEGY" />
     <item
-        android:id="@+id/navigation_terminal"
-        android:icon="@android:drawable/ic_dialog_info"
-        android:title="Terminal" />
-
+        android:id="@+id/nav_terminal"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="TERMINAL" />
 </menu>

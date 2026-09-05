@@ -190,13 +190,13 @@ class MainActivity : AppCompatActivity() {
                 session.connect(10000)
 
                 withContext(Dispatchers.Main) {
-                    logText.append("[SYSTEM] Vultr 연결 성공! 로그 출력을 불러옵니다...\n\n")
+                    logText.append("[SYSTEM] Vultr 연결 성공! 대기 중...\n\n")
                 }
 
                 val channel = session.openChannel("exec") as ChannelExec
                 
-                // 실행할 명령어 (테스트용 top -b)
-                channel.setCommand("top -b") 
+                // 🚀 실제 봇이 구동되면서 남기는 로그만 실시간으로 출력되도록 변경 
+                channel.setCommand("tail -f /root/nohup.out") 
 
                 val inStream = channel.inputStream
                 channel.connect()

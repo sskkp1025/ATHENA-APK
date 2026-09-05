@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.athenaz.app">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- AWS 서버와 터미널 통신을 하기 위한 필수 인터넷 권한 -->
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <!-- 에러를 유발하던 icon, roundIcon, theme 속성 완전 삭제 -->
     <application
         android:allowBackup="true"
         android:label="ATHENA-APK"
-        android:supportsRtl="true">
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"> 
+        <!-- 👆 앱 강제 종료를 막기 위해 안드로이드 내장 표준 테마를 다시 적용했습니다 -->
 
         <activity
             android:name=".MainActivity"
